@@ -33,7 +33,10 @@ module.exports = {
             'router': path.resolve(__dirname, '../src/router'),
             'mock': path.resolve(__dirname, '../src/mock'),
             'vendor': path.resolve(__dirname, '../src/vendor'),
-            'static': path.resolve(__dirname, '../static')
+            'static': path.resolve(__dirname, '../static'),
+            //add by 王圣文 引入jquery
+            'jquery': path.resolve(__dirname,'../node_modules/jquery/src/jquery'),
+
         }
     },
     externals: {
