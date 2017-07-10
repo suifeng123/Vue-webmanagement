@@ -19,11 +19,12 @@
 
         </el-table>
         </div >
+           <el-button @click="change()">click</el-button>
            <!--这个是连动的效果 -->
-           <transition name="fade">
-           <div class="staitic">
-              <el-button @click="change()">click</el-button>
-           </div>
+           <transition name="slide">
+
+              <p>21341949021</p>
+
            </transition>
            <!-- 这是连动的效果 -->
        </div>
@@ -33,7 +34,7 @@
           <button v-on:click="show = !show">
               toggle
           </button>
-          <transition name="fade">
+          <transition name="slide-fade">
               <p v-if="show">Hello</p>
           </transition>
       </div>
@@ -44,30 +45,52 @@
 </template>
 
 <style>
-    .staic {
-        float: left;
-    }
+
    .left {
        float:left;
+       transition:width 2s;
+       -moz-transition:width 2s; /* Firefox 4 */
+       -webkit-transition:width 2s; /* Safari and Chrome */
+       -o-transition:width 2s; /* Opera */
 
        width:70%;
    }
     .kuozhan .left{
-        transition: transform 2s;
+        transition:width 2s;
+        -moz-transition:width 2s; /* Firefox 4 */
+        -webkit-transition:width 2s; /* Safari and Chrome */
+        -o-transition:width 2s; /* Opera */
         width:90%;
 
     }
     .kuozhan .right {
       width:0;
+        transition:width 2s;
+        -moz-transition:width 2s; /* Firefox 4 */
+        -webkit-transition:width 2s; /* Safari and Chrome */
+        -o-transition:width 2s; /* Opera */
     }
 
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity 2.5s;
+    .slide-fade-enter-active {
+        transition: all .3s ease;
     }
 
-    .fade-enter, .fade-leave-to {
+    .slide-fade-leave-active {
+        transition: all .8s cubic-bezier(1.0,0.5,1.0);
+    }
+
+    .slide-fade-enter,.slide-fade-leave-to {
+        transfrom: translateX(10px);
         opacity: 0;
     }
+
+    .slide-enter-active,.slide-leave-active {
+        transition:all 4.3s ease;
+    }
+    .slide-enter-to,.slide-leave-to {
+        transition: all 4.3s ease;
+    }
+
 </style>
 
 
@@ -79,6 +102,7 @@
             change(){
                  console.log("kai");
                  this.kuozhan = !this.kuozhan;
+                 this.show = !this.show;
               },
             toggleShow() {
                this.isShowing = !this.isShowing;
