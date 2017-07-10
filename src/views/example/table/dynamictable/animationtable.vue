@@ -20,14 +20,25 @@
         </el-table>
         </div >
            <!--这个是连动的效果 -->
+           <transition name="fade">
            <div class="staitic">
               <el-button @click="change()">click</el-button>
-              <transition name="fade">
-                  <p v-if="show">Hello</p>
-              </transition>
            </div>
+           </transition>
            <!-- 这是连动的效果 -->
        </div>
+        <!--这个是研究Vue的动画效果-->
+
+      <div id="demo">
+          <button v-on:click="show = !show">
+              toggle
+          </button>
+          <transition name="fade">
+              <p v-if="show">Hello</p>
+          </transition>
+      </div>
+
+        <!--这个是研究Vue的动画效果-->
 
     </div>
 </template>
@@ -50,21 +61,32 @@
       width:0;
     }
 
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 2.5s;
+    }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
 </style>
 
+
 <script>
+
     const defaultFormThead = ['apple', 'banana']; // 默认选中项
     export default {
         methods:{
-            change()
-    {
-        console.log("kai");
-
-        this.kuozhan = !this.kuozhan;
-    }
+            change(){
+                 console.log("kai");
+                 this.kuozhan = !this.kuozhan;
+              },
+            toggleShow() {
+               this.isShowing = !this.isShowing;
+          }
         },
         data() {
         return {
+            isShowing: false,
             kuozhan:false,
             show:true,
             items:['apple','banana','orange'],
@@ -99,7 +121,8 @@
             });
             this.key = this.key + 1;// 为了保证table 每次都会重渲 （牺牲性能保证效果，当然也可以不用）
         }
-    }
+    },
+
     };
 </script>
 
